@@ -86,49 +86,44 @@
         background-color: #a66bb6;
     }
 
-.how-to-play-icon {
-  width: 200px;
-  height: 200px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px; /* adjust to place */
-  right: 20px;
-}
+    .how-to-play-icon {
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
-h2 {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
+    h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
 
-title {
-  font-size: 32px;
-}
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
 
-.popup {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-}
+    .popup-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+    }
 
-.popup-content {
-  background: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  width: 300px;
-  border-radius: 10px;
-}
-
-.close-btn {
-  float: right;
-  font-size: 20px;
-  cursor: pointer;
-}
-
+    .close-btn {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -153,7 +148,6 @@ title {
     </ul>
   </div>
 </div>
-
 
 <p id="moves">Moves: 0</p>
 <p id="timer">Time: 60s</p>
@@ -265,7 +259,6 @@ function checkMatch() {
 </script>
 
 <script>
-
 // Popup Elements
 const howToPlayBtn = document.getElementById("howToPlayBtn");
 const howToPlayPopup = document.getElementById("howToPlayPopup");
@@ -287,23 +280,8 @@ window.addEventListener("click", (e) => {
     howToPlayPopup.style.display = "none";
   }
 });
-
-
-howToPlayBtn.addEventListener("click", () => {
-  howToPlayPopup.style.display = "block";
-});
-
-closePopup.addEventListener("click", () => {
-  howToPlayPopup.style.display = "none";
-});
-
-window.addEventListener("click", (event) => {
-  if (event.target === howToPlayPopup) {
-    howToPlayPopup.style.display = "none";
-  }
-});
-
-
 </script>
 </body>
 </html>
+
+
