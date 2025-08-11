@@ -129,7 +129,7 @@
 <body>
 <h1>Match The Cats~</h1>
 <!-- How to Play Icon Button -->
-<img src="assets/how to play.png" 
+<img src="how to play.png" 
      alt="How to Play" 
      id="howToPlayBtn" 
      class="how-to-play-icon" 
@@ -155,21 +155,22 @@
 <button onclick="location.reload()">Restart</button>
 
 <!-- Audio files -->
-<audio id="bgMusic" src="assets/bgm2.mp3" loop></audio>
-<audio id="flipSound" src="assets/pop.mp3"></audio>
-<audio id="matchSound" src="assets/click.mp3"></audio>
-<audio id="loseSound" src="assets/lose.mp3"></audio>
+<audio id="bgMusic" src="bgm2.mp3" loop></audio>
+<audio id="flipSound" src="pop.mp3"></audio>
+<audio id="matchSound" src="coin.mp3"></audio>
+<audio id="loseSound" src="lose.mp3"></audio>
+
 
 <script>
 const images = [
-    'assets/assnight.png',
-    'assets/cocoa.png',
-    'assets/carmel.png',
-    'assets/dawn.png',
-    'assets/strawberry.png',
-    'assets/starrynight.png',
-    'assets/greyscale.png',
-    'assets/ginger.png'
+    'midnight.png',
+    'cocoa.png',
+    'carmel.png',
+    'dawn.png',
+    'strawberry.png',
+    'starrynight.png',
+    'greyscale.png',
+    'ginger.png'
 ];
 
 let cards = [...images, ...images].sort(() => Math.random() - 0.5);
@@ -283,5 +284,6 @@ window.addEventListener("click", (e) => {
 </script>
 </body>
 </html>
+
 
 
