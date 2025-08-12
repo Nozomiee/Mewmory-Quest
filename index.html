@@ -87,27 +87,30 @@
     }
 
 .how-to-play-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 20px;
     right: 20px;
-    text-align: center;
+    cursor: pointer;
+    z-index: 1000; /* above cards */
 }
 
 .how-to-play-icon {
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
+    width: 60px;
+    height: auto;
 }
 
 .how-to-play-text {
-    margin-top: 5px;
     font-size: 14px;
+    margin-top: 5px;
     color: #333;
 }
 
-    @media (max-width: 480px) {
+@media (max-width: 480px) {
     .how-to-play-icon {
-        width: 100px;
+        width: 50px;
     }
     .how-to-play-text {
         font-size: 12px;
@@ -148,12 +151,9 @@
 <body>
 <h1>Match The Cats~</h1>
 <!-- How to Play Icon Button -->
-<div class="how-to-play-container">
-    <img src="how to play.png" 
-         alt="How to Play" 
-         id="howToPlayBtn" 
-         class="how-to-play-icon">
-    <p class="how-to-play-text">How to Play</p>
+<div class="how-to-play-container" id="howToPlayBtn">
+    <img src="your-icon.png" alt="How to Play" class="how-to-play-icon">
+    <span class="how-to-play-text">How to Play</span>
 </div>
 
 
@@ -330,6 +330,7 @@ window.addEventListener("click", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
