@@ -150,7 +150,7 @@
 </div>
 
 <p id="moves">Moves: 0</p>
-<p id="timer">Time: 60s</p>
+<p id="timer">Time: 45s</p>
 <div id="game-board"></div>
 <button onclick="location.reload()">Restart</button>
 
@@ -159,6 +159,8 @@
 <audio id="flipSound" src="pop.mp3"></audio>
 <audio id="matchSound" src="coin.mp3"></audio>
 <audio id="loseSound" src="lose.mp3"></audio>
+<audio id="winSound" src="win.mp3"></audio>
+
 
 
 <script>
@@ -178,7 +180,7 @@ const board = document.getElementById('game-board');
 let flipped = [];
 let matched = [];
 let moves = 0;
-let timeLeft = 60;
+let timeLeft = 45;
 let timerInterval;
 
 // Audio elements
@@ -186,6 +188,8 @@ const bgMusic = document.getElementById('bgMusic');
 const flipSound = document.getElementById('flipSound');
 const matchSound = document.getElementById('matchSound');
 const loseSound = document.getElementById('loseSound');
+const winSound = document.getElementById('winSound');
+
 
 // Create cards
 cards.forEach((img, idx) => {
@@ -208,7 +212,7 @@ document.querySelectorAll('.card').forEach(card => card.classList.add('flipped')
 setTimeout(() => {
     document.querySelectorAll('.card').forEach(card => card.classList.remove('flipped'));
     startGame();
-}, 10000);
+}, 5000);
 
 function startGame() {
     bgMusic.play();
@@ -224,7 +228,11 @@ function startGame() {
     }, 1000);
 }
 
+flet gameOver = false;
+
 function flipCard(card, idx) {
+    if (gameOver) return; // prevent more flips after game over
+
     if (flipped.length < 2 && !card.classList.contains('flipped') && !matched.includes(idx)) {
         card.classList.add('flipped');
         flipSound.currentTime = 0;
@@ -234,10 +242,21 @@ function flipCard(card, idx) {
         if (flipped.length === 2) {
             moves++;
             document.getElementById('moves').textContent = "Moves: " + moves;
+
+            if (moves >= 15) {
+                clearInterval(timerInterval);
+                bgMusic.pause();
+                loseSound.play();
+                gameOver = true;
+                setTimeout(() => alert('💔 Out of moves! You lose!'), 100);
+                return;
+            }
+
             setTimeout(checkMatch, 800);
         }
     }
 }
+
 
 function checkMatch() {
     const [a, b] = flipped;
@@ -251,11 +270,14 @@ function checkMatch() {
     }
     flipped = [];
 
-    if (matched.length === cards.length) {
-        clearInterval(timerInterval);
-        bgMusic.pause();
-        setTimeout(() => alert('🎉 Congratulations! You matched all pairs!'), 500);
-    }
+  if (matched.length === cards.length) {
+    clearInterval(timerInterval);
+    bgMusic.pause();
+    winSound.currentTime = 0;
+    winSound.play();
+    setTimeout(() => alert('🎉 Congratulations! You matched all pairs!'), 500);
+   }
+
 }
 </script>
 
@@ -284,6 +306,7 @@ window.addEventListener("click", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
