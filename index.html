@@ -86,14 +86,33 @@
         background-color: #a66bb6;
     }
 
+.how-to-play-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: center;
+}
+
+.how-to-play-icon {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.how-to-play-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+    @media (max-width: 480px) {
     .how-to-play-icon {
-      width: 200px;
-      height: 200px;
-      cursor: pointer;
-      position: absolute;
-      top: 20px;
-      right: 20px;
+        width: 100px;
     }
+    .how-to-play-text {
+        font-size: 12px;
+    }
+}
 
     h2 {
       font-size: 24px;
@@ -129,11 +148,14 @@
 <body>
 <h1>Match The Cats~</h1>
 <!-- How to Play Icon Button -->
-<img src="how to play.png" 
-     alt="How to Play" 
-     id="howToPlayBtn" 
-     class="how-to-play-icon" 
-     title="How to Play">
+<div class="how-to-play-container">
+    <img src="how to play.png" 
+         alt="How to Play" 
+         id="howToPlayBtn" 
+         class="how-to-play-icon">
+    <p class="how-to-play-text">How to Play</p>
+</div>
+
 
 <!-- Popup Container -->
 <div id="howToPlayPopup" class="popup">
@@ -141,7 +163,7 @@
     <span id="closePopup" class="close-btn">&times;</span>
     <h2>How to Play</h2>
     <ul>
-      <li>Memorize the cards when they are revealed at the start.</li>
+      <li>Memorize the cards when they are revealed for 5 seconds at the start.</li>
       <li>Click two cards to flip them over.</li>
       <li>If they match, they stay open; if not, they flip back.</li>
       <li>Match all pairs before the timer runs out to win.</li>
@@ -275,8 +297,10 @@ function checkMatch() {
     bgMusic.pause();
     winSound.currentTime = 0;
     winSound.play();
-    setTimeout(() => alert('🎉 Congratulations! You matched all pairs!'), 500);
-   }
+    winSound.onended = () => {
+        alert('🎉 Congratulations! You matched all pairs!');
+     };
+ }
 
 }
 </script>
@@ -306,6 +330,7 @@ window.addEventListener("click", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
