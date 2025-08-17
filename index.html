@@ -179,15 +179,14 @@
 <p id="timer">Time: 45s</p>
 <div id="game-board"></div>
 <button onclick="location.reload()">Restart</button>
-
+<a href="https://www.instagram.com/csstuffrat/" id="insta-btn" target="_blank" class="btn">Instagram</a>
 <!-- Audio files -->
 <audio id="bgMusic" src="bgm2.mp3" loop></audio>
 <audio id="flipSound" src="pop.mp3"></audio>
 <audio id="matchSound" src="coin.mp3"></audio>
 <audio id="loseSound" src="lose.mp3"></audio>
 <audio id="winSound" src="win.mp3"></audio>
-
-
+<audio id="clicksound" src="pop.mp3" preload="auto"></audio>
 
 <script>
 const images = [
@@ -331,6 +330,22 @@ window.addEventListener("click", (e) => {
     howToPlayPopup.style.display = "none";
   }
 });
+</script>
+
+<script>
+const clicksound = document.getElementById("clicksound");
+
+//instagram btton
+const instabtn = document.getElementById("insta-btn");
+instabtn.addEventListener("click", () =>{
+    clicksound.currentTime = 0; // rewind to start
+    clicksound.play();
+
+    gsap.fromTo(instabtn,
+         {scale: 1, rotation: 0},
+         {scale:1.3, rotation: 1, duration: 0.3, yoyo: true, repeat: 1, ease: "back.inOut(2)"}
+        );
+  });
 </script>
 </body>
 </html>
